@@ -385,6 +385,13 @@
     margin-bottom: 10px;
   }
 
+  .model-step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
   .model-step p {
     font-family: var(--font-display);
     font-size: 16px;
@@ -399,43 +406,6 @@
   }
 
   /* ---------------- ventures ---------------- */
-  .ventures-count {
-    font-family: var(--font-body);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--text-faint);
-    text-transform: uppercase;
-    text-align: right;
-  }
-
-  .filter-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-  }
-
-  .filter-pill {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    border-radius: 999px;
-    padding: 8px 16px;
-    border: 1px solid var(--border-strong);
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-
-  .filter-pill:hover { color: var(--text); border-color: var(--accent); }
-
-  .filter-pill.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #0b0710;
-  }
-
   .venture-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -443,23 +413,20 @@
   }
 
   .venture-card {
-    grid-column: span 3;
+    grid-column: span 2;
     border: 1px solid var(--border);
     border-radius: 18px;
     background: var(--bg-card);
     padding: 26px;
-    min-height: 210px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 18px;
     position: relative;
     overflow: hidden;
     transition: border-color 0.2s ease;
   }
 
   .venture-card:hover { border-color: var(--border-strong); }
-
-  .venture-card.hidden { display: none; }
 
   .venture-top {
     display: flex;
@@ -485,10 +452,21 @@
     color: var(--accent-strong);
   }
 
-  .venture-art {
-    align-self: center;
-    opacity: 0.9;
+  .venture-shot {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-void);
   }
+
+  .venture-shot img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  .venture-body { display: flex; flex-direction: column; }
 
   .venture-name {
     font-family: var(--font-display);
@@ -500,17 +478,57 @@
   .venture-tag {
     font-size: 13px;
     color: var(--text-muted);
-    margin: 0;
+    margin: 0 0 14px;
     line-height: 1.5;
   }
 
+  /* purple text link (products + team invite) */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+
+  .text-link svg { transition: transform 0.15s ease; }
+  .text-link:hover svg { transform: translateX(3px); }
+
+  /* wide TaxCalc card: text left, picture right */
+  .venture-wide {
+    grid-column: span 6;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    grid-template-areas: "top shot" "body shot";
+    grid-template-rows: auto 1fr;
+    column-gap: 32px;
+    row-gap: 18px;
+  }
+
+  .venture-wide .venture-top { grid-area: top; }
+  .venture-wide .venture-shot { grid-area: shot; align-self: center; }
+  .venture-wide .venture-shot img { aspect-ratio: 16 / 8; }
+  .venture-wide .venture-body { grid-area: body; align-self: end; }
+
   @media (max-width: 900px) {
     .venture-grid { grid-template-columns: repeat(2, 1fr); }
-    .venture-card { grid-column: span 1 !important; }
+    .venture-card { grid-column: span 1; }
+    .venture-wide {
+      grid-column: span 2;
+      grid-template-columns: 1fr;
+      grid-template-areas: "top" "shot" "body";
+      grid-template-rows: auto;
+    }
+    .venture-wide .venture-shot img { aspect-ratio: 16 / 10; }
   }
 
   @media (max-width: 560px) {
     .venture-grid { grid-template-columns: 1fr; }
+    .venture-wide { grid-column: span 1; }
   }
 
   /* ---------------- team ---------------- */
@@ -564,6 +582,26 @@
     text-transform: uppercase;
     color: var(--text-faint);
     margin: 0;
+  }
+
+  .team-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 6px 0 14px;
+  }
+
+  /* invitation card */
+  .team-card.team-invite {
+    border: 1px dashed var(--border-strong);
+    background: var(--bg-card);
+  }
+
+  .team-invite .team-avatar { background: transparent; }
+
+  .team-invite .team-avatar .circle {
+    background: transparent;
+    border: 1.5px dashed rgba(163,150,255,0.55);
   }
 
   @media (max-width: 860px) {
@@ -654,6 +692,18 @@
     letter-spacing: -0.01em;
     margin: 12px 0 0;
     max-width: 12ch;
+  }
+
+  .cta-desc {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #a6abbd;
+    margin: 14px 0 0;
+  }
+
+  @media (max-width: 640px) {
+    .cta-row { flex-direction: column; align-items: flex-start; }
   }
 
   .cta-link {
