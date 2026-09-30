@@ -7,9 +7,9 @@
     --text: #f2f2f5;
     --text-muted: #9295a8;
     --text-faint: #5c5f72;
-    --accent: #8b7cfb;
-    --accent-strong: #a396ff;
-    --accent-soft: rgba(139,124,251,0.12);
+    --accent: #c02a49;
+    --accent-strong: #e8637c;
+    --accent-soft: rgba(192,42,73,0.14);
 
     --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
     --font-body: "Inter", ui-sans-serif, sans-serif;
@@ -88,13 +88,7 @@
     text-decoration: none;
   }
 
-  .nav-logo::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
+  .nav-logo img { height: 30px; width: auto; }
 
   .nav-links {
     display: flex;
@@ -133,10 +127,10 @@
 
   .btn-solid {
     background: var(--accent);
-    color: #0b0710;
+    color: #ffffff;
   }
 
-  .btn-solid:hover { background: var(--accent-strong); }
+  .btn-solid:hover { background: #d63a58; }
 
   .btn-outline {
     background: transparent;
@@ -211,7 +205,7 @@
     padding: 22px;
     background: linear-gradient(160deg, var(--bg-raised), var(--bg-void));
     position: relative;
-    min-height: 320px;
+    min-height: 480px;
     display: flex;
     flex-direction: column;
   }
@@ -219,35 +213,43 @@
   .signal-head {
     display: flex;
     justify-content: space-between;
-    font-family: var(--font-body);
-    font-size: 10px;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-faint);
-  }
-
-  .signal-tags {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
+    color: var(--text-muted);
   }
 
   .signal-tag {
-    font-family: var(--font-body);
-    font-size: 10px;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    background: var(--bg-card);
+    white-space: nowrap;
+  }
+
+  .signal-tag-label {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    border: 1px solid var(--border-strong);
-    border-radius: 999px;
-    padding: 5px 11px;
-    background: rgba(0,0,0,0.3);
-    white-space: nowrap;
   }
+
+  .signal-tag strong {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .signal-tag-top { top: 62px; right: 24px; }
+  .signal-tag-bottom { bottom: 98px; left: 16px; }
 
   .signal-rings {
     flex: 1;
@@ -256,7 +258,11 @@
     justify-content: center;
   }
 
-  .signal-rings svg { width: 210px; height: 210px; }
+  .signal-rings svg { width: 290px; height: 290px; }
+
+  @media (max-width: 560px) {
+    .signal-rings svg { width: 230px; height: 230px; }
+  }
 
   .ring-outer { animation: spin 40s linear infinite; transform-origin: 100px 100px; }
   .ring-inner { animation: spin 26s linear infinite reverse; transform-origin: 100px 100px; }
@@ -270,7 +276,7 @@
     justify-content: flex-end;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 22px;
+    font-size: 32px;
     color: var(--text);
   }
 
@@ -601,7 +607,7 @@
 
   .team-invite .team-avatar .circle {
     background: transparent;
-    border: 1.5px dashed rgba(163,150,255,0.55);
+    border: 1.5px dashed rgba(232,99,124,0.55);
   }
 
   @media (max-width: 860px) {
@@ -742,13 +748,7 @@
     font-size: 13px;
   }
 
-  .footer-logo::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
+  .footer-logo img { height: 21px; width: auto; }
 
   /* focus visibility */
   a:focus-visible, button:focus-visible {
